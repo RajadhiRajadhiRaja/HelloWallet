@@ -1,0 +1,62 @@
+<template>
+  <div class="page" data-name="wallethome">
+    <!-- Top Navbar -->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="title sliding">My Wallet</div>
+      </div>
+    </div>
+    <!-- Scrollable page content-->
+    <div class="page-content">
+      <div
+        data-pagination='{"el": ".swiper-pagination"}'
+        data-space-between="50"
+        class="swiper-container swiper-init demo-swiper"
+      >
+        <div class="swiper-pagination"></div>
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img
+              src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="block-title">Modals</div>
+      <div class="block block-strong">
+        <div class="row">
+          <div class="col-50">
+            <a
+              href="#"
+              class="button button-raised button-fill popup-open"
+              data-popup="#my-popup"
+              >Popup</a
+            >
+          </div>
+          <div class="col-50">
+            <a
+              href="#"
+              class="button button-raised button-fill login-screen-open"
+              data-login-screen="#my-login-screen"
+              >Login Screen</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default {};
+</script>
