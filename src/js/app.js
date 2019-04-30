@@ -16,6 +16,7 @@ var app = new Framework7({
 
   name: "wallet-app", // App name
   theme: "auto", // Automatic theme detection
+  
   // App root data
   data: function() {
     return {
@@ -46,3 +47,12 @@ $$("#my-login-screen .login-button").on("click", function() {
   // Alert username and password
   app.dialog.alert("Username: " + username + "<br>Password: " + password);
 });
+
+// Create Mnemonic
+$$('#createMnemonic').on('click', function () {
+  var bip39 = require("bip39");
+  const mnemonic = bip39.generateMnemonic();
+  console.log(mnemonic);
+  app.dialog.alert(mnemonic);
+});
+
