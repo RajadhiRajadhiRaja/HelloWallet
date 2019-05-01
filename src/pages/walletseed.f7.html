@@ -7,12 +7,12 @@
       </div>
     </div>
     <div class="page-content">
-      <div class="block block-strong"><br>
+      <div class="block block-strong text-align-center"><br>
         <h2><p class="text-align-center">Your recovery phrase</p></h2>
         <p class="text-align-center">Write down or copy these words in the right order and save them somewhere safe.</p>
         {{#each mnemonic}}
         <div class="chip">
-          <div class="chip-media bg-color-red">1</div>
+          <div class="chip-media bg-color-red">{{@index+1}}</div>
           <div class="chip-label">{{this}}</div>
         </div>
         {{/each}}
