@@ -1,54 +1,86 @@
+<!-- component template -->
 <template>
-  <div class="page" data-name="generatewallet">
-    <div class="navbar">
-      <div class="navbar-inner sliding">
-        <div class="left">
-          <a href="#" class="link back">
-            <i class="icon icon-back"></i>
-            <span class="if-not-md">Back</span>
-          </a>
+    <div class="page">
+      <div class="navbar">
+          <div class="navbar-inner sliding">
+              <div class="left">
+                <a href="#" class="link back">
+                  <i class="icon icon-back"></i>
+                  <span class="if-not-md">Back</span>
+                </a>
+              </div>
+            </div>
+      </div>
+      <div class="page-content">
+        <!-- <div class="block block-strong text-align-center"><br> -->
+          <h2><p class="text-align-center">Your Wallet</p></h2>
+          <p class="text-align-center">Tap the words to put them next to each other in the correct order</p>
+          <div class="card text-align-center">
+            <div class="card-content card-content-padding">
+              <h3><p class="text-align-center">Your Mnemonic</p></h3>
+              {{#each mnemonic}}
+              <div class="chip">
+                <div class="chip-label">{{this}}</div>
+              </div>
+              {{/each}}
+            </div> 
+          </div>
+          <div class="card text-align-center">
+              <div class="card-content card-content-padding">
+                <h3><p class="text-align-center">Your Public Key</p></h3>
+                {{#each mnemonic}}
+                <div class="chip">
+                  <div class="chip-label">{{this}}</div>
+                </div>
+                {{/each}}
+              </div> 
+            </div>
+            <div class="card text-align-center">
+                <div class="card-content card-content-padding">
+                  <h3><p class="text-align-center">Your Private Key</p></h3>
+                  {{#each mnemonic}}
+                  <div class="chip">
+                    <div class="chip-label">{{this}}</div>
+                  </div>
+                  {{/each}}
+                </div> 
+              </div>
+        <!-- </div> -->
+              
+  
+
+        <div class="block">
+            <p class="row"> <a href="/generatewallet/" class="ac-1 col button button-fill color-red">CLOSE</a></p>
         </div>
-      </div>
     </div>
-    <div class="page-content">
-      <div class="block-title">About My App</div>
-      <div class="block block-strong">
-        <p>
-          Fugiat perspiciatis excepturi, soluta quod non ullam deleniti. Nobis
-          sint nemo consequuntur, fugiat. Eius perferendis animi autem incidunt
-          vel quod tenetur nostrum, voluptate omnis quasi quidem illum
-          consequuntur, a, quisquam.
-        </p>
-        <p>
-          Laudantium neque magnam vitae nemo quam commodi, in cum dolore
-          obcaecati laborum, excepturi harum, optio qui, consequuntur? Obcaecati
-          dolor sequi nesciunt culpa quia perspiciatis, reiciendis ex debitis,
-          ut tenetur alias.
-        </p>
-      </div>
-      <div class="block">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni
-          molestiae laudantium dignissimos est nobis delectus nemo ea alias
-          voluptatum architecto, amet similique, saepe iste consectetur in
-          repellat ut minus quibusdam!
-        </p>
-        <p>
-          Molestias et distinctio porro nesciunt ratione similique, magni
-          doloribus, rerum nobis, aliquam quae reiciendis quasi modi. Nam a
-          recusandae, fugiat in ea voluptates fuga eius, velit corrupti
-          reprehenderit dignissimos consequatur!
-        </p>
-        <p>
-          Blanditiis, cumque quo adipisci. Molestiae, dolores dolorum quos
-          doloremque ipsa ullam eligendi commodi deserunt doloribus inventore
-          magni? Ea mollitia veniam nostrum nihil, iusto doloribus a at! Ea
-          molestiae ullam delectus!
-        </p>
-      </div>
-    </div>
-  </div>
-</template>
-<script>
-  export default {};
-</script>
+  
+  </template>
+  <!-- component styles -->
+  <style>
+    .red-link {
+      color: red;
+    }
+  </style>
+  <!-- rest of component data and methods -->
+  <script>
+    export default {
+      data: function () {
+        return {
+          mnemonic : null,
+          selected: []
+        }
+      },
+      methods: {
+        
+      },
+      on: {
+        pageInit: function () {
+          var mnemonic=localStorage.getItem("mnemonicSeed");
+          var res = mnemonic.split(" ");
+          this.$setState({
+          mnemonic: res,
+          });
+        },
+      }
+    }
+  </script>
