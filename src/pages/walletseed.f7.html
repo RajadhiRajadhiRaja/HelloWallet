@@ -2,9 +2,14 @@
 <template>
   <div class="page">
     <div class="navbar">
-      <div class="navbar-inner">
-        <div class="title">WalletSeed</div>
-      </div>
+        <div class="navbar-inner sliding">
+            <div class="left">
+              <a href="#" class="link back">
+                <i class="icon icon-back"></i>
+                <span class="if-not-md">Back</span>
+              </a>
+            </div>
+          </div>
     </div>
     <!-- <div class="page-content"> -->
       <div class="block block-strong text-align-center"><br>
@@ -16,7 +21,6 @@
           <div class="chip-label">{{this}}</div>
         </div>
         {{/each}}
-
         <div class="block">
           <div class="row">
             <button class="button col">Copy</button>
@@ -58,11 +62,10 @@
       pageInit: function () {
         var bip39 = require("bip39");
         const mnemonic = bip39.generateMnemonic();
-        
         var mnemonicsplit = mnemonic;
         var res = mnemonicsplit.split(" ");
+        localStorage.setItem("mnemonicSeed", mnemonic);
         // console.log(res);
-        
         // console.log(mnemonic);
         this.$setState({
           mnemonic: res,
@@ -70,5 +73,5 @@
       },
     }
   }
-  
+
 </script>

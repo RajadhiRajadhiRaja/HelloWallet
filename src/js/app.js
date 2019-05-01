@@ -12,6 +12,7 @@ import "../css/app.css";
 import routes from "./routes.js";
 
 var app = new Framework7({
+  template7Pages: true,
   root: "#app", // App root element
 
   name: "wallet-app", // App name

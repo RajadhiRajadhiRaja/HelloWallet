@@ -2,9 +2,14 @@
 <template>
     <div class="page">
       <div class="navbar">
-        <div class="navbar-inner">
-          <div class="title">Verify Seed</div>
-        </div>
+          <div class="navbar-inner sliding">
+              <div class="left">
+                <a href="#" class="link back">
+                  <i class="icon icon-back"></i>
+                  <span class="if-not-md">Back</span>
+                </a>
+              </div>
+            </div>
       </div>
       <!-- <div class="page-content"> -->
         <div class="block block-strong text-align-center"><br>
@@ -20,14 +25,11 @@
 
           {{#each mnemonic}}
           <div class="chip">
-            <div class="chip-media bg-color-red">{{@index+1}}</div>
             <div class="chip-label">{{this}}</div>
           </div>
           {{/each}}
-      </div>
-  
-      
-  
+      </div>   
+
         <div class="block">
             <p class="row"> <a href="/generatewallet/" class="ac-1 col button button-fill color-red">CONTINUE</a></p>
         </div>
@@ -46,25 +48,22 @@
       data: function () {
         return {
           mnemonic : null,
+          selected: []
         }
       },
       methods: {
+        
       },
       on: {
         pageInit: function () {
-          var bip39 = require("bip39");
-          const mnemonic = bip39.generateMnemonic();
-          
-          var mnemonicsplit = mnemonic;
-          var res = mnemonicsplit.split(" ");
-          console.log(res);
-          
-          // console.log(mnemonic);
+          var mnemonic=localStorage.getItem("mnemonicSeed");
+          var shuffle = require('shuffle-words');
+          var mnemonicShuffle = shuffle(mnemonic);
+          var res = mnemonicShuffle.split(" ");
           this.$setState({
-            mnemonic: res,
-            });
+          mnemonic: res,
+          });
         },
       }
     }
-    
   </script>
