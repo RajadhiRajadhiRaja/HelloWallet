@@ -65,11 +65,11 @@ $$("#my-login-screen .login-button").on("click", function() {
 // })
 
 // Generate Mnemonic on WalletSeed Page
-$$(document).on('page:init', '.page[data-name="walletseed"]', function (e) {
-  var bip39 = require("bip39");
-  const mnemonic = bip39.generateMnemonic();
-  console.log(mnemonic);
-  app.dialog.alert(mnemonic);
-  // document.write(`<h1>Hello World</h1>`);  
-})
+// $$(document).on('page:init', '.page[data-name="walletseed"]', function (e) {
+//   var bip39 = require("bip39");
+//   const mnemonic = bip39.generateMnemonic();
+//   console.log(mnemonic);
+//   app.dialog.alert(mnemonic);
+//   document.write(mnemonic);
+// })
 

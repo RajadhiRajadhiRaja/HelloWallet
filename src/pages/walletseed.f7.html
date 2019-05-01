@@ -1,97 +1,55 @@
+<!-- component template -->
 <template>
-  <div class="page" data-name="walletseed">
+  <div class="page">
     <div class="navbar">
-      <div class="navbar-inner sliding">
-        <div class="left">
-          <a href="#" class="link back">
-            <i class="icon icon-back"></i>
-            <span class="if-not-md">Back</span>
-          </a>
-        </div>
+      <div class="navbar-inner">
+        <div class="title">Your Mnemonic</div>
       </div>
     </div>
     <div class="page-content">
       <div class="block block-strong"><br>
         <h2><p class="text-align-center">Your recovery phrase</p></h2>
         <p class="text-align-center">Write down or copy these words in the right order and save them somewhere safe.</p>
-
+        {{#each mnemonic}}
         <div class="chip">
           <div class="chip-media bg-color-red">1</div>
-          <div class="chip-label">mnemonic</div>
+          <div class="chip-label">{{this}}</div>
         </div>
-        
-        <div class="chip">
-          <div class="chip-media bg-color-red">2</div>
-          <div class="chip-label">Kate</div>
-        </div>
-        
-        <div class="chip">
-          <div class="chip-media bg-color-red">3</div>
-          <div class="chip-label">Kate</div>
-        </div>
-
-        <div class="chip">
-          <div class="chip-media bg-color-red">4</div>
-          <div class="chip-label">Kate</div>
-        </div>
-
-        <div class="chip">
-          <div class="chip-media bg-color-red">5</div>
-          <div class="chip-label">Kate</div>
-        </div>
-        
-        <div class="chip">
-          <div class="chip-media bg-color-red">6</div>
-          <div class="chip-label">Kate</div>
-        </div>
-                    
-        <div class="chip">
-          <div class="chip-media bg-color-red">6</div>
-          <div class="chip-label">Kate</div>
-        </div>
-    
-        <div class="chip">
-          <div class="chip-media bg-color-red">7</div>
-          <div class="chip-label">Kate</div>
-        </div>
-                        
-        <div class="chip">
-          <div class="chip-media bg-color-red">8</div>
-          <div class="chip-label">Kate</div>
-        </div>
-                          
-        <div class="chip">
-          <div class="chip-media bg-color-red">9</div>
-          <div class="chip-label">Kate</div>
-        </div>
-                            
-        <div class="chip">
-          <div class="chip-media bg-color-red">10</div>
-          <div class="chip-label">Kate</div>
-        </div>
-                              
-        <div class="chip">
-          <div class="chip-media bg-color-red">11</div>
-          <div class="chip-label">Kate</div>
-        </div>
-                                
-        <div class="chip">
-          <div class="chip-media bg-color-red">12</div>
-          <div class="chip-label">mnemonic</div>
-        </div>      
-      </div>      
+        {{/each}}
     </div>
   </div>
 </template>
-
-
-<script type = "text/javascript" 
-  src = "https://cdnjs.cloudflare.com/ajax/libs/framework7/1.4.2/js/framework7.min.js"></script>
-  
-<script type = "text/javascript" 
-  src = "../js/app.js">
-</script>
-
+<!-- component styles -->
+<style>
+  .red-link {
+    color: red;
+  }
+</style>
+<!-- rest of component data and methods -->
 <script>
-  export default {};
+  export default {
+    data: function () {
+      return {
+        mnemonic : null,
+      }
+    },
+    methods: {
+    },
+    on: {
+      pageInit: function () {
+        var bip39 = require("bip39");
+        const mnemonic = bip39.generateMnemonic();
+        
+        var mnemonicsplit = mnemonic;
+        var res = mnemonicsplit.split(" ");
+        console.log(res);
+        
+        // console.log(mnemonic);
+        this.$setState({
+          mnemonic: res,
+          });
+      },
+    }
+  }
+  
 </script>
