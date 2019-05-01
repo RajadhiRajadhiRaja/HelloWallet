@@ -48,11 +48,28 @@ $$("#my-login-screen .login-button").on("click", function() {
   app.dialog.alert("Username: " + username + "<br>Password: " + password);
 });
 
-// Create Mnemonic
-$$('#createMnemonic').on('click', function () {
+// // Create Mnemonic
+// $$('#createMnemonic').on('click', function () {
+//   var bip39 = require("bip39");
+//   const mnemonic = bip39.generateMnemonic();
+//   console.log(mnemonic);
+//   app.dialog.alert(mnemonic);
+// });
+
+// Generate Mnemonic on Page load
+// $$(document).on('page:init', function (e) {
+//   var bip39 = require("bip39");
+//   const mnemonic = bip39.generateMnemonic();
+//   console.log(mnemonic);
+//   app.dialog.alert(mnemonic);
+// })
+
+// Generate Mnemonic on WalletSeed Page
+$$(document).on('page:init', '.page[data-name="walletseed"]', function (e) {
   var bip39 = require("bip39");
   const mnemonic = bip39.generateMnemonic();
   console.log(mnemonic);
   app.dialog.alert(mnemonic);
-});
+  // document.write(`<h1>Hello World</h1>`);  
+})
 
