@@ -3,10 +3,10 @@
   <div class="page">
     <div class="navbar">
       <div class="navbar-inner">
-        <div class="title">Your Mnemonic</div>
+        <div class="title">WalletSeed</div>
       </div>
     </div>
-    <div class="page-content">
+    <!-- <div class="page-content"> -->
       <div class="block block-strong text-align-center"><br>
         <h2><p class="text-align-center">Your recovery phrase</p></h2>
         <p class="text-align-center">Write down or copy these words in the right order and save them somewhere safe.</p>
@@ -16,8 +16,27 @@
           <div class="chip-label">{{this}}</div>
         </div>
         {{/each}}
-    </div>
-  </div>
+
+        <div class="block">
+          <div class="row">
+            <button class="button col">Copy</button>
+          </div>
+        </div>
+
+        <div class="card text-align-center">
+          <div class="card-content card-content-padding">
+            <i class="f7-icons">info_round</i>
+            <p>Never share recovery phrase with anyone, store it securely!</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="row"> <a href="/verifyseed/" class="ac-1 col button button-fill color-red">CONTINUE</a></p>
+        </div>
+    
+      </div>
+  <!-- </div> -->
+
 </template>
 <!-- component styles -->
 <style>
@@ -42,7 +61,7 @@
         
         var mnemonicsplit = mnemonic;
         var res = mnemonicsplit.split(" ");
-        console.log(res);
+        // console.log(res);
         
         // console.log(mnemonic);
         this.$setState({
