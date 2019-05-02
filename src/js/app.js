@@ -11,7 +11,10 @@ import "../css/app.css";
 // Import Routes
 import routes from "./routes.js";
 
+var now = Framework7.utils.now();
+
 var app = new Framework7({
+  pushState: true,
   template7Pages: true,
   root: "#app", // App root element
 

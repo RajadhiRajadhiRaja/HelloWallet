@@ -11,29 +11,32 @@
               </div>
             </div>
       </div>
-      <!-- <div class="page-content"> -->
+      <div class="page-content">
         <div class="block block-strong text-align-center"><br>
           <h2><p class="text-align-center">Verify Recovery Phrase</p></h2>
           <p class="text-align-center">Tap the words to put them next to each other in the correct order</p>
 
           <div class="card text-align-center">
-              <div class="card-content card-content-padding">
-                <i class="f7-icons">info_round</i>
-                <p>Never share recovery phrase with anyone, store it securely!</p>
-              </div>
-              </div>
+            <div class="card-content card-content-padding">
+                {{#each selectedMnemonic}}
+                <div class="chip">
+                  <div class="chip-label" @click="openAlert({{@index}})">{{this}}</div>
+                </div>
+                {{/each}}
+            </div>
+          </div>
 
           {{#each mnemonic}}
           <div class="chip">
-            <div class="chip-label">{{this}}</div>
+            <div class="chip-label" @click="openAlert({{@index}})">{{this}}</div>
           </div>
           {{/each}}
+          
       </div>   
-
         <div class="block">
             <p class="row"> <a href="/generatewallet/" class="ac-1 col button button-fill color-red">CONTINUE</a></p>
         </div>
-    <!-- </div> -->
+    </div>
   
   </template>
   <!-- component styles -->
@@ -48,11 +51,22 @@
       data: function () {
         return {
           mnemonic : null,
+          selectedMnemonic: [],
           selected: []
         }
       },
       methods: {
-        
+        openAlert: function (id) {
+        // var self = this.$app.dialog.alert(id);
+        console.log(this.mnemonic);
+        console.log(id);
+        // if(this.mnemonic[1] === id){
+          console.log(this.mnemonic[id])
+        // }
+        this.$setState({
+          selectedMnemonic: this.mnemonic[id],
+          });
+      },
       },
       on: {
         pageInit: function () {
