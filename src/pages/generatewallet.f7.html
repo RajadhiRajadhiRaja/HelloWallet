@@ -11,7 +11,7 @@
               </div>
             </div>
       </div>
-      <div class="page-content">
+      <!-- <div class="page-content"> -->
         <div class="block block-strong text-align-center"><br>
           <h2><p class="text-align-center">Your Wallet</p></h2>
           <p class="text-align-center">Tap the words to put them next to each other in the correct order</p>
@@ -25,20 +25,20 @@
 
           <!-- Display Public Key -->
 
-          <h3><p class="text-align-center">Your Public Key</p></h3>
+          <h3><p class="text-align-center">Address</p></h3>
           <p>{{this.address}}</p>
 
           <!-- Display Private Key -->
 
-          <h3><p class="text-align-center">Your Public Key</p></h3>
-          <p>{{this.address}}</p>
+          <h3><p class="text-align-center">Private Key</p></h3>
+          <p>{{this.privateKey}}</p>
 
         </div>
         
         <div class="block">
           <p class="row"> <a href="/generatewallet/" class="ac-1 col button button-fill color-red">CLOSE</a></p>
         </div>
-    </div>
+    <!-- </div> -->
   </template>
   <!-- component styles -->
   <style>
@@ -53,7 +53,8 @@
         return {
           mnemonic : null,
           selected: [],
-          address: null
+          address: null,
+          privateKey: null
         }
       },
       methods: {
@@ -68,16 +69,15 @@
           });
 
           const bip39 = require('bip39');
-          const hdkey = require('ethereumjs-wallet/hdkey');
-          const mnemonicSee = mnemonic;
-          const hdwallet = hdkey.fromMasterSeed(bip39.mnemonicToSeed(mnemonicSee));
-          const path = "m/44'/60'/0'/0/0";
-          const wallet = hdwallet.derivePath(path).getWallet();
-          const address = `0x${wallet.getAddress().toString('hex')}`;
-          console.log(`Address: ${address}`);
-
+          var ethers = require("ethers");
+          const privateKey = ethers.Wallet.fromMnemonic(mnemonic).privateKey;
+          const address = ethers.Wallet.fromMnemonic(mnemonic).address
+          // console.log(privateKey);
+          // console.log(address);
+          
           this.$setState({
           address: address,
+          privateKey: privateKey
           });
 
         },

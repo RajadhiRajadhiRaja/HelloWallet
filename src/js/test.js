@@ -1,7 +1,5 @@
-var utils = require('ethereumjs-util');
-var privateKey = new Buffer("ball fury inmate beef display muscle ribbon polar energy tenant cart enact");
-var publicKey = utils.privateToPublic(privateKey).toString('hex');
-var address = utils.privateToAddress(privateKey).toString('hex');
-
-console.log(publicKey);
-console.log(address);
+var bip39 = require("bip39");
+var ethers = require("ethers");
+const mnemonic = bip39.generateMnemonic();
+console.log(ethers.Wallet.fromMnemonic(mnemonic).privateKey);
+console.log(ethers.Wallet.fromMnemonic(mnemonic).address);
