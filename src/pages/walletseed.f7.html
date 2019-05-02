@@ -60,18 +60,36 @@
     },
     on: {
       pageInit: function () {
+
+        //Method - 1
+        /*
+        const { mnemonicGenerate, mnemonicToSeed, mnemonicValidate, naclKeypairFromSeed } = require("@polkadot/util-crypto");
+        const mnemonicAlice = mnemonicGenerate();
+        console.log(`Generated mnemonic: ${mnemonicAlice}`);
+        const isValidMnemonic = mnemonicValidate(mnemonicAlice);
+        console.log(`isValidMnemonic: ${isValidMnemonic}`);
+        const seedAlice = mnemonicToSeed(mnemonicAlice);
+        console.log(seedAlice);
+        const { secretKey, publicKey } = naclKeypairFromSeed(seedAlice);
+        console.log(naclKeypairFromSeed(seedAlice));
+        console.log(publicKey);
+        var mnemonicsplit = mnemonicAlice;
+        var res = mnemonicsplit.split(" ");
+        localStorage.setItem("mnemonicSeed", mnemonicsplit);
+        this.$setState({
+          mnemonic: res,
+          }); */
+        
+        //Method - 2
         var bip39 = require("bip39");
         const mnemonic = bip39.generateMnemonic();
         var mnemonicsplit = mnemonic;
         var res = mnemonicsplit.split(" ");
         localStorage.setItem("mnemonicSeed", mnemonic);
-        // console.log(res);
-        // console.log(mnemonic);
         this.$setState({
           mnemonic: res,
           });
       },
     }
   }
-
 </script>

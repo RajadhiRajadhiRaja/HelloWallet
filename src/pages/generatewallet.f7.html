@@ -12,48 +12,33 @@
             </div>
       </div>
       <div class="page-content">
-        <!-- <div class="block block-strong text-align-center"><br> -->
+        <div class="block block-strong text-align-center"><br>
           <h2><p class="text-align-center">Your Wallet</p></h2>
           <p class="text-align-center">Tap the words to put them next to each other in the correct order</p>
-          <div class="card text-align-center">
-            <div class="card-content card-content-padding">
-              <h3><p class="text-align-center">Your Mnemonic</p></h3>
-              {{#each mnemonic}}
-              <div class="chip">
-                <div class="chip-label">{{this}}</div>
-              </div>
-              {{/each}}
-            </div> 
+          <!-- Display Mnemonic -->
+          <h3><p class="text-align-center">Your Mnemonic</p></h3>
+          {{#each mnemonic}}
+          <div class="chip">
+            <div class="chip-label">{{this}}</div>
           </div>
-          <div class="card text-align-center">
-              <div class="card-content card-content-padding">
-                <h3><p class="text-align-center">Your Public Key</p></h3>
-                {{#each mnemonic}}
-                <div class="chip">
-                  <div class="chip-label">{{this}}</div>
-                </div>
-                {{/each}}
-              </div> 
-            </div>
-            <div class="card text-align-center">
-                <div class="card-content card-content-padding">
-                  <h3><p class="text-align-center">Your Private Key</p></h3>
-                  {{#each mnemonic}}
-                  <div class="chip">
-                    <div class="chip-label">{{this}}</div>
-                  </div>
-                  {{/each}}
-                </div> 
-              </div>
-        <!-- </div> -->
-              
-  
+          {{/each}}
 
+          <!-- Display Public Key -->
+
+          <h3><p class="text-align-center">Your Public Key</p></h3>
+          <p>{{this.address}}</p>
+
+          <!-- Display Private Key -->
+
+          <h3><p class="text-align-center">Your Public Key</p></h3>
+          <p>{{this.address}}</p>
+
+        </div>
+        
         <div class="block">
-            <p class="row"> <a href="/generatewallet/" class="ac-1 col button button-fill color-red">CLOSE</a></p>
+          <p class="row"> <a href="/generatewallet/" class="ac-1 col button button-fill color-red">CLOSE</a></p>
         </div>
     </div>
-  
   </template>
   <!-- component styles -->
   <style>
@@ -67,7 +52,8 @@
       data: function () {
         return {
           mnemonic : null,
-          selected: []
+          selected: [],
+          address: null
         }
       },
       methods: {
@@ -89,6 +75,11 @@
           const wallet = hdwallet.derivePath(path).getWallet();
           const address = `0x${wallet.getAddress().toString('hex')}`;
           console.log(`Address: ${address}`);
+
+          this.$setState({
+          address: address,
+          });
+
         },
       }
     }

@@ -19,6 +19,7 @@ async function main() {
   // Create valid seed from mnemonic as u8a and convert it to a string
   // FIXME - Replace with mnemonicToSeed once exposed
   const seedAlice = mnemonicToSeed(mnemonicAlice);
+  console.log(seedAlice);
 
   // Generate new public/secret keypair for Alice from the supplied seed
   const { secretKey, publicKey } = naclKeypairFromSeed(seedAlice);
