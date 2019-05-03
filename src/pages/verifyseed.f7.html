@@ -1,83 +1,101 @@
 <!-- component template -->
 <template>
-    <div class="page">
-      <div class="navbar">
-          <div class="navbar-inner sliding">
-              <div class="left">
-                <a href="#" class="link back">
-                  <i class="icon icon-back"></i>
-                  <span class="if-not-md">Back</span>
-                </a>
-              </div>
-            </div>
-      </div>
-      <div class="page-content">
-        <div class="block block-strong text-align-center"><br>
-          <h2><p class="text-align-center">Verify Recovery Phrase</p></h2>
-          <p class="text-align-center">Tap the words to put them next to each other in the correct order</p>
-
-          <div class="card text-align-center">
-            <div class="card-content card-content-padding">
-                {{#each selectedMnemonic}}
-                <div class="chip">
-                  <div class="chip-label" @click="openAlert({{@index}})">{{this}}</div>
-                </div>
-                {{/each}}
+  <div class="page">
+    <div class="navbar">
+        <div class="navbar-inner sliding">
+            <div class="left">
+              <a href="#" class="link back">
+                <i class="icon icon-back"></i>
+                <span class="if-not-md">Back</span>
+              </a>
             </div>
           </div>
-
-          {{#each mnemonic}}
-          <div class="chip">
-            <div class="chip-label" @click="openAlert({{@index}})">{{this}}</div>
-          </div>
-          {{/each}}
-          
-      </div>   
-        <div class="block">
-            <p class="row"> <a href="/generatewallet/" class="ac-1 col button button-fill color-red">CONTINUE</a></p>
-        </div>
     </div>
-  
-  </template>
-  <!-- component styles -->
-  <style>
-    .red-link {
-      color: red;
-    }
-  </style>
-  <!-- rest of component data and methods -->
-  <script>
-    export default {
-      data: function () {
-        return {
-          mnemonic : null,
-          selectedMnemonic: [],
-          selected: []
-        }
-      },
-      methods: {
-        openAlert: function (id) {
-        // var self = this.$app.dialog.alert(id);
-        console.log(this.mnemonic);
-        console.log(id);
-        // if(this.mnemonic[1] === id){
-          console.log(this.mnemonic[id])
-        // }
-        this.$setState({
-          selectedMnemonic: this.mnemonic[id],
-          });
-      },
-      },
-      on: {
-        pageInit: function () {
-          var mnemonic=localStorage.getItem("mnemonicSeed");
-          var shuffle = require('shuffle-words');
-          var mnemonicShuffle = shuffle(mnemonic);
-          var res = mnemonicShuffle.split(" ");
-          this.$setState({
-          mnemonic: res,
-          });
-        },
+    <div class="page-content">
+      <div class="block block-strong text-align-center"><br>
+        <h2><p class="text-align-center">Verify Recovery Phrase</p></h2>
+        <p class="text-align-center">Tap the words to put them next to each other in the correct order</p>
+
+        <div class="card text-align-center">
+          <div class="card-content card-content-padding">
+              {{#each selectedMnemonic}}
+              <div class="chip">
+                <div class="chip-label" @click="openAlert({{@index}})">{{this}}</div>
+              </div>
+              {{/each}}
+          </div>
+        </div>
+
+        {{#each mnemonic}}
+        <div class="chip">
+          <div class="chip-label" @click="openAlert({{@index}})">{{this}}</div>
+        </div>
+        {{/each}}
+        
+    </div>   
+      <div class="block">
+          <p class="row" id="btncontinue"> <a href="/generatewallet/" class="ac-1 col button button-fill color-red disabled">CONTINUE</a></p>
+      </div>
+  </div>
+
+</template>
+<!-- component styles -->
+<style>
+  .red-link {
+    color: red;
+  }
+</style>
+<!-- rest of component data and methods -->
+<script>
+  var UserArray=[];
+  var flag=true;
+  export default {
+    data: function () {
+      return {
+        mnemonic : null,
+        selectedMnemonic: [],
+        selected: []
       }
+    },
+    methods: {
+      openAlert: function (id) {
+        var getItems=JSON.parse(localStorage.getItem("mnemonicSeedStorage"));
+        
+        UserArray.push(this.mnemonic[id]);
+        localStorage.setItem('added-items2', JSON.stringify(UserArray));
+        var UserArray2 = JSON.parse(localStorage.getItem("added-items2"));
+        function arraysEqual(_arr1, _arr2) {
+        if (!Array.isArray(_arr1) || ! Array.isArray(_arr2) || _arr1.length !== _arr2.length)
+          return false;
+        var arr1 = _arr1.concat().sort();
+        var arr2 = _arr2.concat().sort();
+        for (var i = 0; i < arr1.length; i++) {
+            if (arr1[i] !== arr2[i])
+                return false;
+        }
+        return true;
     }
-  </script>
+    if(arraysEqual(getItems,UserArray2)){
+         document.getElementById('btncontinue').innerHTML='<a href="/generatewallet/" class="ac-1 col button button-fill color-red">CONTINUE</a>';
+    }
+        console.log(this.mnemonic[id])
+      // }
+      this.$setState({
+        selectedMnemonic: this.mnemonic[id],
+        });
+    },
+    },
+    on: {
+      pageInit: function () {
+        
+        var mnemonic=localStorage.getItem("mnemonicSeed");
+        var shuffle = require('shuffle-words');
+        var mnemonicShuffle = shuffle(mnemonic);
+        var res = mnemonicShuffle.split(" ");
+        this.$setState({
+        mnemonic: res,
+        });
+      },
+    }
+  }
+</script>

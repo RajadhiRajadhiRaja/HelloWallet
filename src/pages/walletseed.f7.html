@@ -85,7 +85,15 @@
         const mnemonic = bip39.generateMnemonic();
         var mnemonicsplit = mnemonic;
         var res = mnemonicsplit.split(" ");
+       
         localStorage.setItem("mnemonicSeed", mnemonic);
+     
+        
+        localStorage.setItem("mnemonicSeedStorage", JSON.stringify(res));
+        
+        
+        
+        
         this.$setState({
           mnemonic: res,
           });
