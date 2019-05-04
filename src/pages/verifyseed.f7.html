@@ -13,21 +13,26 @@
     </div>
     <div class="page-content">
       <div class="block block-strong text-align-center"><br>
-        <h2><p class="text-align-center">Verify Recovery Phrase</p></h2>
-        <p class="text-align-center">Tap the words to put them next to each other in the correct order</p>
+        <h2><p class="text-align-center" id="title">Verify Recovery Phrase</p></h2>
+        <p class="text-align-center" id="subtitle">Tap the words to put them next to each other in the correct order</p>
 
         <div class="card text-align-center">
           <div class="card-content card-content-padding">
               {{#each selectedMnemonic}}
-              <div class="chip">
+              <div style="display: none;" class="chip" >
                 <div class="chip-label" @click="openAlert({{@index}})">{{this}}</div>
               </div>
               {{/each}}
+              <div id="chip-append">
+                
+              </div>
+              
+              
           </div>
         </div>
 
         {{#each mnemonic}}
-        <div class="chip">
+        <div class="chip" id="chip{{@index}}">
           <div class="chip-label" @click="openAlert({{@index}})">{{this}}</div>
         </div>
         {{/each}}
@@ -47,8 +52,12 @@
 </style>
 <!-- rest of component data and methods -->
 <script>
+
   var UserArray=[];
+  var UserArray2=[];
   var flag=true;
+   var appendData='';
+   var myId='';
   export default {
     data: function () {
       return {
@@ -59,30 +68,43 @@
     },
     methods: {
       openAlert: function (id) {
+       
         var getItems=JSON.parse(localStorage.getItem("mnemonicSeedStorage"));
-        
+        console.log(getItems);
+        appendData+='<div class="chip"><div class="chip-label">' + this.mnemonic[id] + '</div></div> ';
+        document.getElementById('chip-append').innerHTML=appendData;
         UserArray.push(this.mnemonic[id]);
         localStorage.setItem('added-items2', JSON.stringify(UserArray));
-        var UserArray2 = JSON.parse(localStorage.getItem("added-items2"));
-        function arraysEqual(_arr1, _arr2) {
-        if (!Array.isArray(_arr1) || ! Array.isArray(_arr2) || _arr1.length !== _arr2.length)
-          return false;
-        var arr1 = _arr1.concat().sort();
-        var arr2 = _arr2.concat().sort();
-        for (var i = 0; i < arr1.length; i++) {
-            if (arr1[i] !== arr2[i])
-                return false;
+        UserArray2 = JSON.parse(localStorage.getItem("added-items2"));
+        console.log(UserArray2);
+        function equalArray(a, b) {
+        if (a.length === b.length) {
+            for (var i = 0; i < a.length; i++) {
+                if (a[i] !== b[i]) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
-    if(arraysEqual(getItems,UserArray2)){
-         document.getElementById('btncontinue').innerHTML='<a href="/generatewallet/" class="ac-1 col button button-fill color-red">CONTINUE</a>';
+    if(equalArray(UserArray2,getItems)){
+       document.getElementById('title').innerHTML='Click continue to enter';
+     document.getElementById('subtitle').innerHTML='';
+     document.getElementById('btncontinue').innerHTML='<a href="/generatewallet/" class="ac-1 col button button-fill color-red">CONTINUE</a>';
     }
-        console.log(this.mnemonic[id])
+    myId='chip'+id;
+        document.getElementById(myId).remove();
+       
+        
+    
+        //console.log(this.mnemonic[id])
       // }
       this.$setState({
         selectedMnemonic: this.mnemonic[id],
-        });
+      }
+      );
     },
     },
     on: {
