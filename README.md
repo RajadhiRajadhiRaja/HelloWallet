@@ -1,59 +1,29 @@
-# wallet-app
+## Process to execute:
 
-## Framework7 CLI Options
+1. git clone https://github.com/RajadhiRajadhiRaja/HelloWallet.git
 
-Framework7 app created with following options:
+2. cd HelloWallet 
 
-```
-{
-  "cwd": "D:\\Lab\\Lab4-Framework7-kitchen\\wizard",
-  "type": [
-    "web"
-  ],
-  "name": "wallet-app",
-  "framework": "core",
-  "template": "single-view",
-  "bundler": "webpack",
-  "cssPreProcessor": false,
-  "customColor": false,
-  "iconFonts": true
-}
-```
+3. ```npm install```
 
-## NPM Scripts
+4. ```npm start```
 
-* `npm start` - run development server
-* `npm run build-prod` - build web app for production
-* `npm run build-dev` - build web app using development mode (faster build without minification and optimization)
+## Output Screens
 
-## WebPack
+### Home Screen
+![1](https://user-images.githubusercontent.com/41378186/57188274-73d95800-6f19-11e9-9666-415c5a4caa2f.PNG)
 
-There is a webpack bundler setup. It compiles and bundles all "front-end" resources. You should work only with files located in `/src` folder. Webpack config located in `build/webpack.config.js`.
+### Mnemonic Generation Screen
+![2](https://user-images.githubusercontent.com/41378186/57188276-776cdf00-6f19-11e9-86a1-acbf198de1ae.PNG)
 
-Webpack has specific way of handling static assets (CSS files, images, audios). You can learn more about correct way of doing things on [official webpack documentation](https://webpack.js.org/guides/asset-management/).
-## Assets
+### Mnemonic Verification Screen (Incorrect Order)
+![3](https://user-images.githubusercontent.com/41378186/57188277-7936a280-6f19-11e9-9ef3-4642b65a4f59.PNG)
 
-Assets (icons, splash screens) source images located in `assets-src` folder. To generate your own icons and splash screen images, you will need to replace all assets in this directory with your own images (pay attention to image size and format), and run the following command in the project directory:
+### Mnemonic Verification Screen (Correct Order)
+![4](https://user-images.githubusercontent.com/41378186/57188278-7b006600-6f19-11e9-8daa-bf1586dcfaca.PNG)
 
-```
-framework7 generate-assets
-```
+### Wallet Address & Private key generation screen
+![5](https://user-images.githubusercontent.com/41378186/57188280-7d62c000-6f19-11e9-92ff-a134c13a3197.PNG)
 
-Or launch UI where you will be able to change icons and splash screens:
-
-```
-framework7 generate-assets --ui
-```
-
-## Documentation & Resources
-
-* [Framework7 Core Documentation](https://framework7.io/docs/)
-
-
-* [Framework7 Icons Reference](https://framework7.io/icons/)
-* [Community Forum](https://forum.framework7.io)
-
-## Support Framework7
-
-Love Framework7? Support project by donating or pledging on patreon:
-https://patreon.com/vladimirkharlampidi
+## Video Output:
+https://youtu.be/nu2aftZYZ7M
